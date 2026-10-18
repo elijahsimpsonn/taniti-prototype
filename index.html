@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Taniti Tourism Website – Interactive Prototype</title>
+<style>
+:root{--bg:#fff;--panel:#f3faf8;--ink:#10302c;--muted:#3d5a55;--line:#0f766e;--btn:#0f766e;--btnink:#fff;--tag:#d3efe9;--accent:#0f766e;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1f1d;--panel:#16302c;--ink:#eaf6f3;--muted:#b5d1cb;--line:#5eead4;--btn:#2dd4bf;--btnink:#052e2a;--tag:#5a4513;--accent:#5eead4}}
+:root[data-theme="dark"]{--bg:#0f1f1d;--panel:#16302c;--ink:#eaf6f3;--muted:#b5d1cb;--line:#5eead4;--btn:#2dd4bf;--btnink:#052e2a;--tag:#5a4513;--accent:#5eead4}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Helvetica,Arial,sans-serif;line-height:1.45}
+.proto{background:var(--ink);color:var(--bg);font-size:12px;text-align:center;padding:4px 8px}
+.wrap{width:100%}
+header{display:flex;flex-wrap:wrap;align-items:center;gap:12px 28px;justify-content:space-between;padding:14px 24px;background:#0f766e;color:#fff}
+.brand{font-weight:700;font-size:20px;color:#fff;text-decoration:none}
+nav{display:flex;flex-wrap:wrap;gap:6px 22px}
+nav a{color:#fff;text-decoration:none;font-size:15px;padding:4px 0;border-bottom:2px solid transparent}
+nav a:hover{border-bottom-color:#fff}
+nav a[aria-current="page"]{font-weight:700;border-bottom-color:#fff}.hb{background:#fff;color:#0f766e;border-color:#fff;font-weight:700}
+.btn{display:inline-block;background:var(--btn);color:var(--btnink);border:1px solid var(--line);padding:10px 18px;font-size:14px;font-family:inherit;text-decoration:none;cursor:pointer;min-height:44px}
+.btn.alt{background:transparent;color:var(--ink)}
+main{background:var(--panel);padding:24px;min-height:70vh}
+section[hidden]{display:none}
+h1{font-size:30px;margin:0 0 8px;color:var(--accent)}
+h2{font-size:22px;margin:0 0 14px;color:var(--accent)}
+h3{font-size:19px;margin:0}
+p{margin:0}
+.hero{padding:28px 0 36px;border-bottom:1px solid var(--line);margin-bottom:24px;display:flex;flex-direction:column;gap:8px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(440px,1fr));gap:16px}
+.card{border:1px solid var(--line);padding:16px;display:flex;flex-direction:column;gap:10px;background:var(--bg)}
+.meta{display:flex;flex-wrap:wrap;gap:6px 22px;font-size:14px;color:var(--muted)}
+.tag{align-self:flex-start;border:1px solid var(--line);background:var(--tag);font-size:12px;font-weight:700;padding:3px 10px}
+.card .btn{align-self:flex-start;margin-top:auto}
+.lead{margin-bottom:16px;color:var(--muted)}
+.trip{border:1px solid var(--line);padding:16px;margin-bottom:16px}
+.trip ul{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-direction:column;gap:8px}
+.trip li{display:flex;justify-content:space-between;align-items:center;gap:12px;border-bottom:1px solid var(--line);padding-bottom:8px}
+.trip li button{min-height:36px;padding:4px 12px}
+.trip .empty{color:var(--muted);font-size:14px}
+.form{border:1px solid var(--line);padding:20px;display:flex;flex-direction:column;gap:14px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+label{display:flex;flex-direction:column;gap:4px;font-size:14px}
+input{font:inherit;padding:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);min-height:44px}
+.done{border:2px solid var(--line);padding:20px;background:var(--bg)}
+.done ul{margin:8px 0 0 18px;padding:0}
+.info{border:1px solid var(--line);padding:16px;margin-bottom:16px;background:var(--bg);display:flex;flex-direction:column;gap:8px}.info ul{margin:0;padding-left:20px}.faq{margin-top:32px;padding-top:24px;border-top:1px solid var(--line)}.faqlist{display:flex;flex-direction:column;border:1px solid var(--line);background:var(--bg)}.faqlist .card{border:0;border-bottom:1px solid var(--line);padding:10px 16px;gap:2px}.faqlist .card:last-child{border-bottom:0}.faqlist h3{font-size:16px}.faqlist p{font-size:14px}@media (max-width:700px){.grid,.two{grid-template-columns:1fr}header,main{padding:14px}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+<header>
+<a class="brand" href="#home">Taniti</a>
+<nav aria-label="Main">
+<a href="#home">Home</a><a href="#activities">Activities</a><a href="#lodging">Lodging</a><a href="#restaurants">Restaurants</a><a href="#transportation">Transportation</a>
+</nav>
+<a class="btn hb" id="bk" href="#book">Book Your Trip</a>
+</header>
+<main>
+
+<section id="home" data-page>
+<div class="hero"><h1>Welcome to Taniti</h1><p>Taniti is a small, tropical island in the Pacific. While the island has an area of less than 500 square miles, the terrain is varied and includes both sandy and rocky beaches, a small but safe harbor, lush tropical rainforests, and a mountainous interior that includes a small, active volcano. Taniti has an indigenous population of about 20,000. Until a recent increase in tourism, most of the Tanitian economy was dominated by fishing or agriculture.</p></div>
+<h2>Explore The Island</h2>
+<div class="grid">
+<div class="card"><h3>Activities</h3><p>Most people visit Taniti to enjoy the beaches, explore the rainforest, and visit the volcano. You can also go snorkeling, ziplining, or on a chartered fishing tour, and visit museums, galleries, and nightlife spots.</p><a class="btn alt" href="#activities">See Activities</a></div>
+<div class="card"><h3>Lodging</h3><p>Choose from an inexpensive hostel, one large four-star resort, many small family-owned hotels, and a growing number of bed and breakfasts. All lodging is strictly regulated and regularly inspected.</p><a class="btn alt" href="#lodging">See Lodging</a></div>
+<div class="card"><h3>Restaurants</h3><p>Taniti has 10 restaurants: five serve mostly local fish and rice, three serve American-style meals, and two serve Pan-Asian cuisine. Two supermarkets, two smaller grocery stores, and a 24-hour convenience store are also available.</p><a class="btn alt" href="#restaurants">See Restaurants</a></div>
+<div class="card"><h3>Transportation</h3><p>Most visitors arrive by air, and a small cruise ship docks in Yellow Leaf Bay one night per week. On the island, you can use public or private buses, taxis, rental cars, or bikes, or explore on foot.</p><a class="btn alt" href="#transportation">See Transportation</a></div>
+</div>
+<div class="faq" id="faq"><h2>FAQ</h2><div class="faqlist">
+<div class="card"><h3>What kind of power outlets does Taniti use?</h3><p>Power outlets are 120 volts, the same as in the United States.</p></div>
+<div class="card"><h3>What is the currency?</h3><p>Taniti uses the U.S. dollar, but many businesses also accept euros and yen. Several banks facilitate currency exchange, and many businesses accept major credit cards.</p></div>
+<div class="card"><h3>What are the alcohol rules?</h3><p>Alcohol is not allowed to be served or sold between midnight and 9:00 a.m. The drinking age is 18 and is not strictly enforced.</p></div>
+<div class="card"><h3>Will people speak English?</h3><p>Many younger Tanitians speak fluent English. Very little English is spoken in rural areas, especially by older residents.</p></div>
+<div class="card"><h3>Is there medical care?</h3><p>There is one hospital and several clinics. The hospital has many multilingual employees.</p></div>
+<div class="card"><h3>Is Taniti safe?</h3><p>Violent crime is very rare in Taniti, but as tourism increases there are more reports of pickpocketing and other petty crimes.</p></div>
+<div class="card"><h3>Are places closed on holidays?</h3><p>Taniti enjoys many national holidays, and many tourist attractions and restaurants are closed on holidays, so plan accordingly.</p></div>
+</div></div>
+</section>
+
+<section id="activities" data-page hidden><h1>Activities</h1><div class="info"><p><b>Entertainment:</b> Most people visit Taniti to enjoy the beaches, explore the rainforest, and visit the volcano. Other things to do include a local history museum, chartered fishing tours, snorkeling, ziplining in the rainforest, several pubs (including a microbrewery), a new dance club, a movie theater, helicopter rides, an arcade, art galleries, and bowling. A nine-hole golf course should be operational by next year. Many of these activities are in Merriton Landing, a rapidly developing area on the north side of Yellow Leaf Bay.</p><p><b>Sightseeing:</b> Most tourists spend most of their time in Taniti City, which boasts native architecture and nearby white, sandy beaches that encircle Yellow Leaf Bay.</p><p><b>Other popular activities:</b></p><ul><li>Boat or bus tours of the island</li><li>Hikes in the rainforest</li><li>Visits to Taniti’s active volcano</li></ul></div><p class="lead">Use “Add to Trip” on anything you like. Your picks appear on the Book Your Trip page.</p><div class="grid" data-cat="activities"></div></section>
+<section id="lodging" data-page hidden><h1>Lodging</h1><div class="info"><p><b>Lodging:</b> Taniti has a wide variety of lodgings that range from an inexpensive hostel to one large, four-star resort. There are many small, family-owned hotels and a growing number of bed and breakfasts. All types of lodging are strictly regulated and regularly inspected by the Tanitian government.</p></div><p class="lead">Use “Add to Trip” on anything you like. Your picks appear on the Book Your Trip page.</p><div class="grid" data-cat="lodging"></div></section>
+<section id="restaurants" data-page hidden><h1>Restaurants</h1><div class="info"><p><b>Restaurants:</b> Taniti currently has 10 restaurants: five serve mostly local fish and rice, three serve American-style meals, and two serve Pan-Asian cuisine.</p><p><b>Grocery Stores:</b> Taniti has two supermarkets, two smaller grocery stores, and one convenience store that is open 24 hours a day.</p></div><p class="lead">Use “Add to Trip” on anything you like. Your picks appear on the Book Your Trip page.</p><div class="grid" data-cat="restaurants"></div></section>
+<section id="transportation" data-page hidden><h1>Transportation</h1><div class="info"><p><b>Getting to Taniti:</b> Almost all visitors arrive in Taniti by air, though some arrive on a small cruise ship that docks in Yellow Leaf Bay for one night per week. Taniti is served by a small airport that can accommodate small jets and propeller planes. The airport is being expanded so larger jets will be able to land on the island within the next few years.</p><p><b>Ground Transportation:</b> Taniti City is flat and very walkable. Many tourists stay around Merriton Landing, which is easy to explore on foot. Other options on the island are below.</p></div><p class="lead">Use “Add to Trip” on anything you like. Your picks appear on the Book Your Trip page.</p><div class="grid" data-cat="transportation"></div></section>
+
+<section id="book" data-page hidden>
+<h1>Book Your Trip</h1>
+<div class="trip"><h3>Your Trip</h3><ul id="triplist"></ul></div>
+<div id="formwrap">
+<form class="form" id="bookform">
+<p>Fill out the form below with your preferred dates and contact details. We’ll reach out to finalize details once your request is submitted.</p>
+<div class="two"><label>Arrival<input type="date" name="arrival" required></label><label>Departure<input type="date" name="departure" required></label></div>
+<label>Party size<input type="number" name="party" min="1" placeholder="Number of guests" required></label>
+<label>Name<input type="text" name="name" placeholder="Full name" required></label>
+<label>Email<input type="email" name="email" placeholder="Email address" required></label>
+<button class="btn" type="submit">Submit Booking</button>
+</form>
+</div>
+<div class="done" id="done" hidden role="status"></div>
+</section>
+
+</main>
+</div>
+<script>
+var LOREM="Lorem ipsum dolor sit amet, consectetur adipiscing elit ea nostrud rerum optio aute anim facilis quibusdam quidem dignissimos.";
+var DATA={
+activities:{one:"Activity",items:[["Nature","$$","Half day",1,"Volcano Visit","Visit Taniti’s small, active volcano in the mountainous interior."],["Nature","$","2-3 hours",1,"Rainforest Hike","Hike through lush tropical rainforest."],["Beach","Free","Flexible",1,"Yellow Leaf Bay Beaches","White, sandy beaches encircle the bay near Taniti City."],["Tour","$$","3 hours",1,"Island Boat or Bus Tour","See the island by boat or by bus."],["Water","$$","2 hours",1,"Snorkeling","Explore the waters around the island."],["Adventure","$$$","2 hours",0,"Ziplining","Zip through the rainforest."],["Water","$$$","Half day",0,"Chartered Fishing Tour","Head out on a chartered fishing tour."],["Culture","$","1-2 hours",1,"Local History Museum","Learn about Taniti’s history."],["Tour","$$$$","30 minutes",0,"Helicopter Ride","See the island from above."],["Culture","$","1 hour",1,"Art Galleries","Browse local art galleries."],["Entertainment","$","1-2 hours",1,"Arcade and Bowling","Play at the arcade or go bowling. Many entertainment options are in Merriton Landing."],["Nightlife","$$","Evening",2,"Pubs and Microbrewery","Visit several pubs, including a microbrewery."]]},
+lodging:{one:"Lodging",items:[["Hostel","$","Per night",0,"Hostel","The most inexpensive lodging on the island. Regularly inspected by the Tanitian government."],["Resort","$$$$","Per night",0,"Four-Star Resort","Taniti’s one large, four-star resort. Regularly inspected by the Tanitian government."],["Hotel","$$","Per night",0,"Family-Owned Hotel 1","A small, family-owned hotel. Regularly inspected by the Tanitian government."],["Hotel","$$","Per night",0,"Family-Owned Hotel 2","A small, family-owned hotel. Regularly inspected by the Tanitian government."],["Bed &amp; Breakfast","$$","Per night",0,"Bed and Breakfast 1","One of a growing number of bed and breakfasts. Regularly inspected by the Tanitian government."],["Bed &amp; Breakfast","$$","Per night",0,"Bed and Breakfast 2","One of a growing number of bed and breakfasts. Regularly inspected by the Tanitian government."]]},
+restaurants:{one:"Restaurant",items:[["Local Fish &amp; Rice","$$","",0,"Restaurant 1","Serves mostly local fish and rice."],["Local Fish &amp; Rice","$$","",0,"Restaurant 2","Serves mostly local fish and rice."],["Local Fish &amp; Rice","$","",0,"Restaurant 3","Serves mostly local fish and rice."],["Local Fish &amp; Rice","$","",0,"Restaurant 4","Serves mostly local fish and rice."],["Local Fish &amp; Rice","$$","",0,"Restaurant 5","Serves mostly local fish and rice."],["American","$$","",0,"Restaurant 6","Serves American-style meals."],["American","$$","",0,"Restaurant 7","Serves American-style meals."],["American","$$$","",0,"Restaurant 8","Serves American-style meals."],["Pan-Asian","$$","",0,"Restaurant 9","Serves Pan-Asian cuisine."],["Pan-Asian","$$","",0,"Restaurant 10","Serves Pan-Asian cuisine."]]},
+transportation:{one:"Transportation",items:[["Bus","$","",0,"Public Buses","Serve Taniti City and run from 5 a.m. to 11 p.m. every day."],["Bus","$$","",0,"Private Buses","Serve the rest of the island."],["Taxi","$$","",0,"Taxis","Available in Taniti City."],["Car","$$$","",0,"Rental Cars","Rent from a local rental agency near the airport."],["Bike","$","",0,"Bike and Helmet Rentals","Available from several vendors. Helmets are required by law."]]}
+};
+var trip=[];
+function key(c,i){return c+":"+i}
+function build(){
+ Object.keys(DATA).forEach(function(c){
+  var d=DATA[c],h="";
+  d.items.forEach(function(it,i){
+   var meta='<span>Type: '+it[0]+'</span><span>Cost: '+it[1]+'</span>'+(it[2]&&c==="activities"?'<span>Duration: '+it[2]+'</span>':'');
+   var tag=(c==="activities"&&it[3])?'<span class="tag">'+(it[3]===2?'18+':'Family Friendly')+'</span>':'';
+   h+='<div class="card"><h3>'+it[4]+'</h3>'+tag+'<div class="meta">'+meta+'</div><p>'+it[5]+'</p><button class="btn add" data-cat="'+c+'" data-i="'+i+'" aria-pressed="false">Add to Trip</button></div>';
+  });
+  document.querySelector('[data-cat="'+c+'"].grid').innerHTML=h;
+ });
+}
+function label(k){var p=k.split(":");return DATA[p[0]].items[+p[1]][4]}
+function render(){
+ document.querySelectorAll(".add").forEach(function(b){
+  var on=trip.indexOf(key(b.dataset.cat,b.dataset.i))>-1;
+  b.textContent=on?"Added ✓ (Remove)":"Add to Trip";
+  b.className="btn add"+(on?" alt":"");
+  b.setAttribute("aria-pressed",on);
+ });
+ document.getElementById("bk").textContent="Book Your Trip"+(trip.length?" ("+trip.length+")":"");
+ var ul=document.getElementById("triplist");
+ ul.innerHTML=trip.length?trip.map(function(k){return '<li><span>'+label(k)+' <small>('+k.split(":")[0]+')</small></span><button class="btn alt rm" data-k="'+k+'">Remove</button></li>'}).join(""):'<li class="empty">Nothing added yet. Use “Add to Trip” on the other pages.</li>';
+}
+function toggle(k){var i=trip.indexOf(k);if(i>-1)trip.splice(i,1);else trip.push(k);render()}
+document.addEventListener("click",function(e){
+ var a=e.target.closest(".add"),r=e.target.closest(".rm");
+ if(a)toggle(key(a.dataset.cat,a.dataset.i));
+ if(r)toggle(r.dataset.k);
+});
+function show(){
+ var h=location.hash.slice(1),pages=document.querySelectorAll("[data-page]"),ok=false;
+ pages.forEach(function(p){if(p.id===h)ok=true});
+ if(!ok)h="home";
+ pages.forEach(function(p){p.hidden=p.id!==h});
+ document.querySelectorAll("nav a").forEach(function(a){if(a.getAttribute("href")==="#"+h)a.setAttribute("aria-current","page");else a.removeAttribute("aria-current")});
+ if(h==="book"){document.getElementById("done").hidden=true;document.getElementById("formwrap").hidden=false}
+ window.scrollTo(0,0);
+}
+document.getElementById("bookform").addEventListener("submit",function(e){
+ e.preventDefault();
+ var f=e.target,items=trip.length?"<ul>"+trip.map(function(k){return "<li>"+label(k)+" ("+k.split(":")[0]+")</li>"}).join("")+"</ul>":"<p>No items were added to the trip.</p>";
+ var d=document.getElementById("done");
+ d.innerHTML="<h3>Booking request submitted</h3><p>Thank you, "+f.name.value.replace(/[<>&]/g,"")+". We’ll reach out to finalize details.</p><p><b>Dates:</b> "+f.arrival.value+" to "+f.departure.value+" &middot; <b>Party size:</b> "+f.party.value+"</p><p><b>Sent with your request:</b></p>"+items+'<p style="margin-top:12px"><a class="btn" href="#home">Back to Home</a></p>';
+ d.hidden=false;document.getElementById("formwrap").hidden=true;
+ trip=[];render();
+});
+window.addEventListener("hashchange",show);
+build();render();show();
+</script>
+</body>
+</html>
